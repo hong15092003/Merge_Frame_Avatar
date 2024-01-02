@@ -85,58 +85,69 @@ var offsetX = canvasOffset.left;
 var offsetY = canvasOffset.top;
 var isDragging = false;
 
+// Mouse events
 $("#canvas").mousedown(function(e) {
-	// vị trí hiện tại chuột theo canvas = vị trí chuột hiện tại - offset của canvas
-	canMouseX = parseInt(e.clientX - offsetX);
-	canMouseY = parseInt(e.clientY - offsetY);
-  
-	// bắt đầu kéo hình
-	isDragging = true;
-  
-	// lưu lại vị trí cũ
-	preX =  canMouseX;
-	preY = canMouseY;
+	startDragging(e.clientX, e.clientY);
 });
 
 $("#canvas").mouseup(function(e) {
-	canMouseX = parseInt(e.clientX - offsetX);
-	canMouseY = parseInt(e.clientY - offsetY);
-  
-	// hết kéo hình
-	isDragging = false;
-
-	preX = canMouseX;
-	preY = canMouseY;
+	stopDragging();
 });
 
 $("#canvas").mouseout(function(e) {
-	canMouseX = parseInt(e.clientX - offsetX);
-	canMouseY = parseInt(e.clientY - offsetY);
-  
-	// chuột ra khỏi canvas rồi nên hết kéo được
-	isDragging = false;
-
-	preX =  canMouseX;
-	preY = canMouseY;
+	stopDragging();
 });
 
 $("#canvas").mousemove(function(e) {
-	canMouseX = parseInt(e.clientX - offsetX);
-	canMouseY = parseInt(e.clientY - offsetY);
-
-	// nếu đang kéo hình thì cập nhật vị trí và vẽ lại
-	if(isDragging) {
-		// delta
-		imagePosX += (canMouseX - preX);
-		imagePosY += (canMouseY - preY);
-	  
-		drawCurrentImage();
+	if (isDragging) {
+		updateImagePosition(e.clientX, e.clientY);
 	}
-
-	preX = canMouseX;
-	preY = canMouseY;
 });
 
+// Touch events
+$("#canvas").on("touchstart", function(e) {
+	var touch = e.originalEvent.touches[0];
+	startDragging(touch.clientX, touch.clientY);
+});
+
+$("#canvas").on("touchend", function(e) {
+	stopDragging();
+});
+
+$("#canvas").on("touchcancel", function(e) {
+	stopDragging();
+});
+
+$("#canvas").on("touchmove", function(e) {
+	var touch = e.originalEvent.touches[0];
+	if (isDragging) {
+		updateImagePosition(touch.clientX, touch.clientY);
+	}
+});
+
+function startDragging(clientX, clientY) {
+	canMouseX = parseInt(clientX - offsetX);
+	canMouseY = parseInt(clientY - offsetY);
+	isDragging = true;
+	preX = canMouseX;
+	preY = canMouseY;
+}
+
+function stopDragging() {
+	isDragging = false;
+	preX = canMouseX;
+	preY = canMouseY;
+}
+
+function updateImagePosition(clientX, clientY) {
+	canMouseX = parseInt(clientX - offsetX);
+	canMouseY = parseInt(clientY - offsetY);
+	imagePosX += (canMouseX - preX);
+	imagePosY += (canMouseY - preY);
+	drawCurrentImage();
+	preX = canMouseX;
+	preY = canMouseY;
+}
 document.getElementById('imageFile').addEventListener('change', function() {
 	updateImage();
 }, false);
