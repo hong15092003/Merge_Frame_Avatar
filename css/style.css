@@ -20,6 +20,10 @@ body {
     border-radius: 10px;
 }
 
+.no-scroll {
+    overflow: hidden;
+    position: fixed;
+}
 .mg-top-botton-20 {
     margin-top: 20px;
     margin-bottom: 20px;

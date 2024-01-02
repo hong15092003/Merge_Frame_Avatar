@@ -21,6 +21,9 @@ var imageHeight = 0;
 
 var angleInDegrees = 0;
 
+var canMouseX;
+var canMouseY;
+
 var frame = new Image;
 frame.src = "images/Frame.png";
 //frame.crossOrigin = 'anonymous';
@@ -106,15 +109,18 @@ $("#canvas").mousemove(function(e) {
 
 // Touch events
 $("#canvas").on("touchstart", function(e) {
+	$("body").addClass("no-scroll");
 	var touch = e.originalEvent.touches[0];
 	startDragging(touch.clientX, touch.clientY);
 });
 
 $("#canvas").on("touchend", function(e) {
+	$("body").removeClass("no-scroll");
 	stopDragging();
 });
 
 $("#canvas").on("touchcancel", function(e) {
+	$("body").removeClass("no-scroll");
 	stopDragging();
 });
 
