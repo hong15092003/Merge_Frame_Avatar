@@ -1,0 +1,153 @@
+:root {
+    --gr: linear-gradient(82deg, #00B969 9.45%, #214837 96.45%);
+}
+
+body {
+    font: 400 16px/1.5 "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #111;
+    background: linear-gradient(to right, #c2dfffd5, #57CDFF); /* Dark blue gradient */
+    -webkit-text-size-adjust: 100%;
+    padding: 20px;
+}
+
+#canvas {
+    /*width: 500px;
+      height: 500px;
+      margin-bottom: 20px;*/
+    width: 100%;
+    height: auto;
+    border: #0000004b 5px solid;
+    border-radius: 10px;
+}
+
+.mg-top-botton-20 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+#canvas:hover {
+    cursor: move;
+}
+
+#scaleBar {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.center {
+    margin: 0 auto;
+    display: block;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.col-left {
+    margin-bottom: 20px;
+}
+
+.meta-info {
+    float: right;
+    font-size: 10px;
+    margin: 10px;
+}
+
+.flex-col-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.option-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.gap10 {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    background: transparent;
+    font-size: 1rem;
+    height: 42px;
+    line-height: 1.5;
+    padding: 0.5rem 1rem;
+    border: solid 0.0625rem rgb(42, 42, 42);
+    color: #000;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 0.14s;
+}
+
+.option-rotate {}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    background: #000;
+    border: 2px solid #000000d5;
+    border-radius: 2px;
+    height: 100%;
+}
+
+input[type="range"]:hover {
+    background-color: #000000d5;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 42px;
+    width: 42px;
+    border-radius: 2px;
+    background: #fff;
+    cursor: ew-resize;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background: #57CDFF;
+    transform: scale(1.2);
+    border: 2px solid #000000d5;
+    ;
+}
+
+.btn:hover {
+    transform: translate(-0.25rem, -0.25rem);
+    box-shadow: 0.25rem 0.25rem 0rem rgb(0, 0, 0);
+    background-color: #57CDFF;
+    border: 1px solid #000000d5;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+@media only screen and (max-width: 1000px) {
+    body {
+        box-sizing: border-box;
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+    }
+
+    btn,
+    .btn {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+
+/* .imageInput{
+    background-color: #00000000;
+
+} */
